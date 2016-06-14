@@ -8,7 +8,7 @@
  Примеры
 	Императивный стиль
 	Функциональный стиль
-Часть 1. 
+Часть 1.
 Типы в скала
  Иерархия типов
  Вывод типов
@@ -46,93 +46,96 @@
     Пример для case class
     Пример для коллекции
     Задания
-  Partial functions
+ Partial functions
     Задания
- Классы
- Кейс классы. 
- Объекты. Кейс объекты. Объекты компаньоны	
- Трейты
- Package Objects
- Исключительные ситуации
-   Checked / Unckecked / Fatal / NonFatal
-   try{}catch{}
-   Try{}  
  Обзор коллекций
-		Коллекции в скала
-		Traversble. Основные методы
-		Примеры коллекций	
- Задания
-
-Scala features
- Tuples    
+     Коллекции в скала
+     Traversble.
+        Основные методы (map, flatMap, collect, foldLeft, transform ...)
+        Примеры коллекций
+     Option
+     Задания
+     For comprehension
+     Tuples
+     Задания
+ Объекты и классы
+    Классы
+        Уровни доступа Private, public, protected.
+        Ограничение досупа(scoped). До пакета. До инстанса.
+    Кейс классы.
+    Объекты. Кейс объекты. Объекты компаньоны
+    Трейты
+    Package Objects
+    Задания
+ Наследование
+    extends и with
+    Полиморфизм, инкапсуляция, наследование
+    Множественное наследование. Diamond problem.
+    Как решено в скале. Линеизация
+   	Задания
+   	Type parameters. Общая информация.
+   	type alias
+    abstract override
+    Ковариантность. Контрвариантность
+   	Структурные типы
+    Полиморфизм в скале (Ad-hoc, duck typing, стратегия, декоратор, cake pattern)
+   	Наследование от функций.
+ Исключительные ситуации
+    Checked / Unckecked / Fatal / NonFatal
+    try{}catch{}
+    Try{}
  Имплиситы.
-	Implicit evidence
+    Implicit evidence
    	Implicit conversions
     Pimp my library. Примеры из predef.
+ Тестирование.
+    ScalaTest
+        FlatSpec
+        FunSpec
+    ScalaCheck
+    Mockito
+    Задания
+ SBT в деталях
+
+Часть 2.
  Инерполяторы
-	String interpolation
+    String interpolation
+ Коллекции в деталях
+    Иерархия
+    Списки
+    Последовательности
+    Потоки (Streams)
+    Карты (Maps)
+    Наборы(Set)
 
-ОО часть скалы
-		Напоминаем скала - гибрилный язык
-		Дженерики. Общая информация.
-	type alias
-	Понятия: наследование, полиморфизм, инкапсуляция
-	Уровни доступа Private public protected. 
-	Ограничение досупа(scoped). До пакета. До инстанса. 
-	Множественное наследование. Diamond problem.
-	Как решено в скале. Линеизация
-    Ковариантность. Контрвариантность         
-	Структурные типы  
-    Полиморфизм в скале (Ad-hoc, duck typing, стратегия, декоратор, cake pattern)
-
-Функции и методы. Наконец
-	Eta conversions
-	Наследование от функций.
-
-Коллекции в деталях
-	Иерархия
-	Списки
-	Последовательности
-	Потоки (Streams)
-	Карты (Maps)
-	Наборы(Set)
-	Наиболее распространенные комбинаторы 
-	  Map, flatMap, collect
-	  tranform,
-	  fold, foldLeft, reduceLeft.
-	проекции  
-        For comprehension
-
-Часть 2. Продвинутая часть
 Связь с JAVA.
  Способы исследования сгенерированного кода
-	JAD 
-	javap
+    JAD
+    javap
  Ограничения и подводные камни
 	инициализация Lazy val
 	def vs val и ETA convertion	
- Дженерики. Виртуальные типпы.
+ Type paramters vs Virtual types.
 	В чем разница между виртуальными типами и дженериками. 
 	Existential types
 	Конструктор типов
 	f-bound polymorphizm
 	type lambdas	
-Асинхронность в SCALA 
- Futures
-	Как выполняеться Future. ExecutionContext
-	Комбинаторы над Future
-	Fork join Pool
-	Promise, зачем он нужен. Примеры применения	
-	Связь Future и Try.
- Akka actors
-	Что такое актор.	
-	Actor System. Конфигурция и применение
-	Простой актор
-	методы Ask, tell, receive
-	SupevisionStrategy. 
-	Метод become.	
-
- Мат. часть
+Асинхронность в SCALA
+    Futures
+    	Как выполняеться Future. ExecutionContext
+    	Комбинаторы над Future
+    	Fork join Pool
+    	Promise, зачем он нужен. Примеры применения
+    	Связь Future и Try.
+    Akka actors
+    	Что такое актор.
+    	Actor System. Конфигурция и применение
+    	Простой актор
+    	методы Ask, tell, receive
+    	SupevisionStrategy.
+    	Метод become.
+Мат. часть
 	Понятяие категории. Морфизмы. Функторы.
 	Монада и моноид
 	Applicative
@@ -144,14 +147,10 @@ Scala features
 	список для самостоятелььного изучения.
 
 Часть 3. Scala in enterprise 	
-	Работа с БД
-	    наш фремворк
-		slick
-	Веб сервисы. ScalaXb
-	Взаимодействие по http
-	 httpClient. Наше расширение для dispatch.
-	 Spray в общих чертах
-	Тесты. 	  
-	  ScalaTest 
-	  Mockito	
-	SBT в деталях
+ Работа с БД
+    наш фремворк
+    slick
+ Веб сервисы. ScalaXb
+ Взаимодействие по http
+    httpClient. Наше расширение для dispatch.
+    Spray в общих чертах
