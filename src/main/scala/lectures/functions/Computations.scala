@@ -16,12 +16,12 @@ object Computation extends App with Data {
 
   def computation(filterData: String, dataProducer: Array[String]): Array[String] = {
     //EMULATE HEAVY LOAD
-    Thread.sleep(500)
+    Thread.sleep(10)
     //PRODUCE WORDS ARRAY FROM A STRING
     val filterArray = filterData.split(" ")
 
     //EMULATE HEAVY LOAD
-    Thread.sleep(2000)
+    Thread.sleep(100)
     // LEAVE ONLY EQUAL WORDS IN BOTH ARRAYS
     dataProducer.filter(dataItem => filterArray.contains(dataItem))
   }
