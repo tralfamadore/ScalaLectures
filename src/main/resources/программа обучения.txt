@@ -116,17 +116,19 @@ Type parameters. Общая информация.
 Path dependent types
 Асинхронность в SCALA
  Futures
-    Как выполняеться Future. ExecutionContext
+    Как выполняеться Future. ExecutionContext. ForkJoinPool
+    Статические методы
+    Callback функции
     Комбинаторы над Future
-    Fork join Pool
-   	Promise, зачем он нужен. Примеры применения
-   	Связь Future и Try.
+   	Promise, зачем он нужен. Пример
+   	Правила работы с Future
+   	Задание
  Akka actors
     Что такое актор.
    	Actor System. Конфигурция и применение
    	Простой актор
    	методы Ask, tell, receive
-   	SupevisionStrategy.
+   	SupervisionStrategy.
    	Метод become.
 
 SBT в деталях
@@ -147,10 +149,6 @@ SBT в деталях
     JAD
     javap
 
-Ограничения и подводные камни
-	инициализация lazy val
-	def vs val и ETA convertion	
-
 Мат. часть
 	Понятяие категории. Морфизмы. Функторы.
 	Монада и моноид
@@ -160,12 +158,8 @@ SBT в деталях
 	Free monada.
 	Trampoline
 	Reader monada.
-    список для самостоятелььного изучения.
-Scala in enterprise
- Работа с БД
-    наш фремворк
-    slick
- Веб сервисы. ScalaXb
- Взаимодействие по http
-    httpClient. Наше расширение для dispatch.
-    Spray в общих чертах
+    список для самостоятельного изучения.
+
+Ограничения и подводные камни
+	инициализация lazy val
+	def vs val и ETA conversion
