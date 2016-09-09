@@ -10,12 +10,21 @@ package lectures.types
   */
 object FixCompile extends App {
 
-  //val mapper = (i: String) => if (i % 2 != 0) i * 2
+  def someFunc(prm1: Int, prm2: String): Option[Int] = ???
 
-  //val result = List(1, 2, 3, 4, 5, 6, 7, 8, 9).map {
-  //    mapper
-  //  }.foldLeft(0) { (acc, v) => acc + v }
+  val mapper = (i: Int) => if (i % 2 != 0) i * 2 else i
 
-  // print(result)
+  val result = List(1, 2, 3, 4, 5, 6, 7, 8, 9).map {
+    mapper
+  }.foldLeft(0) { (acc, v) => acc + v }
+
+  println(result)
+
+  val numb = try {
+    someFunc(2, "s")
+  } catch {
+    case e: NotImplementedError => println("not implemented!")
+    case _ => println("some error occur")
+  }
 }
 

@@ -20,7 +20,7 @@ package lectures.functions
   *
   *
   */
-class SQLAPI(resource :String) {
+class SQLAPI(resource: String) {
 
   case class Connection(resource: String, opened: Boolean = false) {
 
@@ -28,21 +28,29 @@ class SQLAPI(resource :String) {
 
     def open(): Connection = this.copy(opened = true)
 
-    def execute(sql: String): String = if(opened) sql else throw new Exception("You have to open connection before execute")
+    def execute(sql: String): String = if (opened) sql else throw new Exception("You have to open connection before execute")
 
   }
 
-  private def logParameter[T](prm: T): T  = ???
+  private def logParameter[T](prm: T): T = {
+    println(s"logging :> $prm");
+    prm
+  }
 
   val connection = (resource: String) => Connection(resource)
 
-  def execute(sql: String): String = ??? // use resource from constructor
+  def execute(sql: String): String = {
+    val con = (logParameter[String] _ andThen connection) (resource)
+    val result = (logParameter[Connection] _ andThen openConnection) (con)(sql)
+
+    logParameter(result)
+  }
 
 
   def openConnection(connection: Connection): (String) => String =
     (sql: String) => {
       connection.open execute sql
-  }
+    }
 
 }
 

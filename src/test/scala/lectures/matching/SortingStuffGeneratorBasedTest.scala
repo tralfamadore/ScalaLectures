@@ -33,7 +33,9 @@ class SortingStuffGeneratorBasedTest extends WordSpec with Matchers with Propert
 
   val cheepWatchGen: Gen[Watches] = Gen.zip(Gen.choose(0f, 1000f), Gen.alphaStr).map(w => Watches(w._2, w._1))
   val bookGenerator = Gen.alphaStr.map(name => Book(name, Random.nextBoolean()))
-  val interestingBookGen = bookGenerator.filter(_.isInteresting)
+  val interestingBookGen = {
+    bookGenerator.filter(_.isInteresting)
+  }
 
   // Override configuration if you need
   implicit override val generatorDrivenConfig =
