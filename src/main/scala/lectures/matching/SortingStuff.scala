@@ -82,22 +82,21 @@ object SortingStuff extends App {
   }
 
   //  // Метод должен положить вещь в правильную коробку
-  private def putStuffInRightBox(item: Stuff, stuffBox: StuffBox) = item match {
+  private def putStuffInRightBox(item: Stuff, stuffBox: StuffBox): StuffBox = item match {
     case watch@Watches(_, price) if price > 1000 => stuffBox.copy(watches = watch :: stuffBox.watches)
     case it@Boots(brand, _) if brand.equals("Converse") || brand.equals("Adidas") => stuffBox.copy(boots = it :: stuffBox.boots)
     case it@Book(_, true) => stuffBox.copy(books = it :: stuffBox.books)
     case junk@_ => stuffBox.copy(junk = junk :: stuffBox.junk)
   }
 
-  //  def findMyKnife(stuffBox: StuffBox): Boolean = stuffBox match {
-  //    case ??? if junk.contains(Knife) => true
-  //    case _ => false
-  //  }
+  def findMyKnife(stuffBox: StuffBox): Boolean = stuffBox match {
+    case StuffBox(_, _, _, junk) if junk.contains(Knife) => true
+    case _ => false
+  }
 
   // //вместо вопросов подставьте композицию функций  sortJunk и findMyKnife
-  // val knifeIsInJunk = (???) (stuff)
+  val knifeIsInJunk = (sortJunk _ andThen findMyKnife) (stuff)
 
-  //print(s"Is knife in a junk? - $knifeIsInJunk")
+  print(s"Is knife in a junk? - $knifeIsInJunk")
 
-  sortJunk(stuff)
 }
