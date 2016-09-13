@@ -19,19 +19,28 @@ object MyListImpl extends App {
 
   case class MyList(data: List[Int]) {
 
-//    def flatMap(f: (Int => MyList)) =
-//      MyList(data.flatMap(inp => f(inp).data))
-//
-//    def map(f: ???) = ???
-//
-//    def foldLeft(acc: Int)(???): Int = ???
-//
-//    def filter(???) = ???
+    def flatMap(f: (Int => MyList)) =
+      MyList(data.flatMap(inp => f(inp).data))
+
+    def map(f: (Int => Int)): MyList = flatMap((x: Int) => MyList(List(f(x))))
+
+    def foldLeft(acc: Int)(op: ((Int, Int)) => Int): Int = {
+      def fold(d: List[Int]): Int = {
+        d match {
+          case Nil => 0
+          case head :: Nil => op(acc, head)
+          case head :: tail => op(fold(tail), head)
+        }
+      }
+      fold(data)
+    }
+
+    def filter(f: (Int) => Boolean): MyList = flatMap((x: Int) => if (f(x)) MyList(List(x)) else MyList(List.empty))
   }
 
-//  require(MyList(List(1, 2, 3, 4, 5, 6)).map(_ * 2).data == List(2, 4, 6, 8, 10, 12))
-//  require(MyList(List(1, 2, 3, 4, 5, 6)).filter(_ % 2 == 0).data == List(2, 4, 6))
-//  require(MyList(List(1, 2, 3, 4, 5, 6)).foldLeft(0)((tpl) => tpl._1 + tpl._2) == 21)
-//  require(MyList(Nil).foldLeft(0)((tpl) => tpl._1 + tpl._2) == 0)
+  require(MyList(List(1, 2, 3, 4, 5, 6)).map(_ * 2).data == List(2, 4, 6, 8, 10, 12))
+  require(MyList(List(1, 2, 3, 4, 5, 6)).filter(_ % 2 == 0).data == List(2, 4, 6))
+  require(MyList(List(1, 2, 3, 4, 5, 6)).foldLeft(0)((tpl) => tpl._1 + tpl._2) == 21)
+  require(MyList(Nil).foldLeft(0)((tpl) => tpl._1 + tpl._2) == 0)
 
 }
