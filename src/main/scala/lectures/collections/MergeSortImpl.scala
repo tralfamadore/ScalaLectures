@@ -11,31 +11,17 @@ object MergeSortImpl extends App {
   def mergeSort(data: Seq[Int]): Seq[Int] = {
 
     def merge(left: Seq[Int], right: Seq[Int]): Seq[Int] = {
-      var leftIndex = 0
-      var rightIndex = 0
-      var result: Seq[Int] = Seq()
-      while (leftIndex <= left.length - 1 && rightIndex <= right.length - 1) {
-        val leftValue = left(leftIndex)
-        val rightValue = right(rightIndex)
-
-        if (leftValue <= rightValue) {
-          result = result ++ Seq(leftValue)
-          leftIndex += 1
-        } else {
-          result = result ++ Seq(rightValue)
-          rightIndex += 1
-        }
+      (left, right) match {
+        case (Seq(), Seq()) => Seq()
+        case (x: Seq[Int], Seq()) => x
+        case (Seq(), x: Seq[Int]) => x
+        case (Seq(x), Seq(y)) => if (x > y) Seq(y, x) else Seq(x, y)
+        case (leftHead :: leftTail, rightHead :: rightTail) =>
+          if (leftHead < rightHead)
+            leftHead +: merge(leftTail, right)
+          else
+            rightHead +: merge(rightTail, left)
       }
-      while (leftIndex <= left.length - 1) {
-        result = result ++ Seq(left(leftIndex))
-        leftIndex += 1
-      }
-      while (rightIndex <= right.length - 1) {
-        result = result ++ Seq(right(rightIndex))
-        rightIndex += 1
-      }
-
-      result
     }
 
     if (data.length <= 1) {
