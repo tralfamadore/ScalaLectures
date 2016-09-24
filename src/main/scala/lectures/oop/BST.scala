@@ -14,7 +14,7 @@ package lectures.oop
   * * * * * Трейт BST и BSTImpl разрешается расширять любым образом
   * * * * * Изменять сигнатуры классов и методов, данные в  условии, нельзя
   * * * * * Постарайтесь не использовать var и мутабильные коллекции
-  * * * * * В задаче про распечатку дерева, нужгно раскомментировать и реадизовать метод toString()
+  * * * * * В задаче про распечатку дерева, нужно раскомментировать и реализовать метод toString()
   *
   * * Для этой структуры нужно реализовать генератор узлов.
   * * Генератор
@@ -36,9 +36,38 @@ case class BSTImpl(value: Int,
                    left: Option[BSTImpl] = None,
                    right: Option[BSTImpl] = None) extends BST {
 
-  def add(newValue: Int): BST = ???
+  def add(newValue: Int): BST = {
+    def add(node: BSTImpl, newValue: Int): BSTImpl = {
+      val next = BSTImpl(newValue, None, None)
+      if (node.value > newValue) {
+        node.left match {
+          case None => BSTImpl(node.value, Some(next), node.right)
+          case Some(n: BSTImpl) => BSTImpl(node.value, Some(add(n, newValue)), node.right)
+        }
+      } else if (node.value < newValue) {
+        node.right match  {
+          case None => BSTImpl(node.value, node.left, Some(next))
+          case Some(n: BSTImpl) => BSTImpl(node.value, node.left, Some(add(n, newValue)))
+        }
+      } else {
+        node
+      }
+    }
 
-  def find(value: Int): Option[BST] = ???
+    add(this, newValue)
+  }
+
+  def find(value: Int): Option[BST] = {
+    def find(value: Int, node: Option[BST]): Option[BST] = node match {
+      case Some(n: BST) => n.find(value)
+    }
+    value match {
+      case x: Int if x == this.value => Some(this)
+      case x: Int if x < this.value => find(x, left)
+      case x: Int if x > this.value => find(x, right)
+      case _ => None
+    }
+  }
 
   // override def toString() = ???
 
@@ -56,10 +85,10 @@ object TreeTest extends App {
 
   // Generate huge tree
   val root: BST = BSTImpl(maxValue / 2)
-  val tree: BST = ??? // generator goes here
+//  val tree: BST = ??? // generator goes here
 
   // add marker items
-  val testTree = tree.add(markerItem).add(markerItem2).add(markerItem3)
+  val testTree = root.add(markerItem).add(markerItem2).add(markerItem3)
 
   // check that search is correct
   require(testTree.find(markerItem).isDefined)
